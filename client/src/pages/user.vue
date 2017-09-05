@@ -12,17 +12,20 @@
     </div>                                
     <!--===========RESULTS TABLE========-->
             
-            <div v-if="isSearched" class= "list-container outline1" >
+            <div v-if="isSearched" class= "list-container outline1 " >
                     <!--===========BRANCH RES========-->
-              <div class="flex row space-around margin-top-sm bg1">
+              <div class="flex row space-around margin-top-sm bg1 margin-bottom-sm ">
                   <div class="item width10 " > your best branch: </div>
                   <div class="item width5 " > {{sortBranches[0].name}} </div>
                   <div class="item width10 " >  average dist:  </div>
                   <div class="item width5 " > {{sortBranches[0].dist}} </div>
               </div>
                     <!--===========STORES RES========-->
+              <div class="">
+                  <div class="item header margin-auto" > the nearests shops: </div>
+              </div>
               <div  class= "list-item outline1 flex col" v-for="(item,idx) in sortedList">
-                      <div class="flex row space-around margin-top-sm">
+                      <div class="flex row space-around margin-top-sm ">
                           <div class="item width5 " > {{idx+1}} </div>
                           <div class="item width5 " > {{item.name}} </div>
                           <div class="item width10 " > {{item.address}} </div>

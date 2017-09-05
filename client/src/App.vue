@@ -262,6 +262,12 @@ select{
 .width80{
      width:80%;
 }
+.margin-bottom-sm{
+    margin-bottom: 1em;
+}
+.margin-auto{
+    margin:auto;
+}
 
 @media screen and (max-width: 700px) {
     .width100sm{
