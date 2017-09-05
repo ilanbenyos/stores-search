@@ -1,7 +1,15 @@
 
 ## Build Setup
 
+
 ``` bash
+# activate client
+../stores/client:   npm run dev
+
+#start server 
+../stores/server:   nodemon server-full.js
+
+
 # install dependencies
 npm install
 
