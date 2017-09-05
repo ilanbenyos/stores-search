@@ -25,12 +25,15 @@
                   <div class="item header margin-auto" > the nearests shops: </div>
               </div>
               <div  class= "list-item outline1 flex col" v-for="(item,idx) in sortedList">
-                      <div class="flex row space-around margin-top-sm ">
+                      <div class="flex row col1 space-around margin-top-sm ">
+                        <div class="flex row  ">
                           <div class="item width5 " > {{idx+1}} </div>
-                          <div class="item width5 " > {{item.name}} </div>
-                          <div class="item width10 " > {{item.address}} </div>
-                          <div  class="item width5">{{item.dist}}
-                          </div>
+                          <div class="item width5 size-md-1 width80sm" > {{item.name}} </div>
+                        </div>
+                          <div class="item width10 width100sm" > {{item.address}} </div>
+                        <div class="flex row  space-around ">
+                          <div  class="item width5">{{item.dist}} km</div>
+                        </div>
                       </div>
               </div>
             </div>
@@ -327,9 +330,10 @@ clientSearch(){
     overflow:initial;
   }
       .list-item{
-        width:98%;
+        /*width:98%;*/
         padding:0.7em;
         margin:0;
+        transition:0.3s;
       }
       .width90{
         width:90%;
@@ -343,8 +347,8 @@ clientSearch(){
       }
       .list-container {
           overflow-y:scroll;
-          overflow-x:none;
-          width:90%;
+          overflow-x:hidden;
+          width:97%;
           margin: auto;
           height:75vh;
           height:calc( 100vh - 200px)
@@ -352,5 +356,9 @@ clientSearch(){
 .bg1{
     background-color: lightcyan
   }
+@media screen and (max-width: 700px) {
 
+
+
+}
 </style>

@@ -51,7 +51,8 @@ export default {
   // flex-direction: column;  
   font-family: 'Kurale', Helvetica, Arial, sans-serif;
   text-align: center;
-  color: #652456;
+//   color: #652456;
+  color: black;
   background: white;
   // max-width: 768px;
   height: 100%;
@@ -272,6 +273,9 @@ select{
 @media screen and (max-width: 700px) {
     .width100sm{
         width:100%;
+    }
+    .width80sm{
+        
     }
     .container{
         // width:calc(100% + 17px);
