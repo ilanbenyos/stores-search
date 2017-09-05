@@ -162,8 +162,8 @@ body {
     vertical-align: middle;
 }
 .buttons-pnl{
-    margin:1em;
-    
+    margin-top:1em;
+    margin-bottom:1em;
 }
 input{
     width:100%;
@@ -259,10 +259,14 @@ select{
 .font-size-md{
     font-size:2em;
 }
+.width80{
+     width:80%;
+}
+
 @media screen and (max-width: 700px) {
-    // .item{
-    //     background-color: red;
-    // }
+    .width100sm{
+        width:100%;
+    }
     .container{
         // width:calc(100% + 17px);
         width:100%;
@@ -279,9 +283,6 @@ select{
     }
     .input{
         width:98%;
-    }
-    .width100-sm{
-        width:100%;
     }
     .show1{
             display:block;

@@ -256,15 +256,16 @@ width-lg{
     width:15em;
 }
 .list-item{
-    padding:initial;
+    padding:0.5em;
     padding-left:1em;
 }
 select{
     width:100%;
 }
 .color-box{
-    width:2em;
-    height:2em;
+    width:3em;
+    min-height:3em;
+    height:100%;
 }
 .deleted-item{
     background-color: red;

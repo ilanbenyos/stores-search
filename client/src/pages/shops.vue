@@ -16,7 +16,7 @@
         </div>
         <!--=====================MAP CONTAINER========================-->
     <div class="flex row col1 width90 ">
-        <div  v-if="isMap" class="map-container height70 margin-bottom-sm">
+        <div  v-if="isMap" class="map-container width100sm width80 height70  margin-bottom-sm">
         <gmap-map
             id= 'map1' :center="center" :zoom="12" style="width: 100%; height: 100%" ref="map" 
                 @dbclick="mapDbClick.native.prevent($event)"    @click="mapClick($event)"
@@ -49,7 +49,7 @@
             <div class="field col ">
                     <div class="field header ">branch:</div>
                     {{item.branch}}
-                    <select v-model="item.branch" :options="branches" 
+                    <select class="width-100" v-model="item.branch" :options="branches" 
                         @change="branchChanged(item)" >
                         <option v-for="opt in branches" :value="opt._id">{{opt.name}} </option>
                     </select>
@@ -371,7 +371,7 @@ clientSearch(){
 <style>
   .map-container {
     border:1px solid red;
-    width:100%;
+    /*width:80%;*/
   }
         #map {
         height: 100%;
@@ -464,5 +464,8 @@ clientSearch(){
       }
       .margin-bottom-sm{
         margin-bottom: 1em;
+      }
+      .width-100{
+          width: 100%;
       }
 </style>
