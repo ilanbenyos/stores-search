@@ -1,5 +1,10 @@
+
+
 <template>
-  <div class="main">
+  <div class="main flex col list-container">
+
+        <!--=====================AUTO COMPLETE========================-->
+    <div class="flex row width90 height-3-em margin-bottom-sm">
         <input id="autocomplete" 
             placeholder="Enter your address" type="text">
         </input>
@@ -8,10 +13,12 @@
                 send
             </b-tooltip>
         </b-button>
-    <div class="flex row col1">
-        <div  v-if="isMap" class="map-container">
+        </div>
+        <!--=====================MAP CONTAINER========================-->
+    <div class="flex row col1 width90 ">
+        <div  v-if="isMap" class="map-container height70 margin-bottom-sm">
         <gmap-map
-            id= 'map1' :center="center" :zoom="12" style="width: 600px; height: 700px" ref="map" 
+            id= 'map1' :center="center" :zoom="12" style="width: 100%; height: 100%" ref="map" 
                 @dbclick="mapDbClick.native.prevent($event)"    @click="mapClick($event)"
             >
             <gmap-marker
@@ -28,10 +35,9 @@
             >
             </gmap-marker  >
             </gmap-map> 
-            <b-button variant='primary' @click="pan">
-            </b-button>
         </div>
-        <div class="flex col">
+        <!--=====================CRUD========================-->
+        <div class="flex col margin-left-sm ">
             <div class="field  col ">
                     <div class="field header">id:</div>
                     <b-form-input disabled size="lg" @keydown.native="modalIsDirty" class="input" v-model="item._id"></b-form-input>
@@ -85,9 +91,9 @@
     </div>
 </template>
 <script>
-import { SENDMSG } from '../../store/store'
-import Helpers from '../../services/helpers.service.js';
-import MapService from '../../services/places.service.js';
+import { SENDMSG } from '../store/store'
+import Helpers from '../services/helpers.service.js';
+import MapService from '../services/places.service.js';
 import Vue from 'vue'
 const VueGoogleMaps = require('vue2-google-maps');
 Vue.use(VueGoogleMaps, {
@@ -364,9 +370,8 @@ clientSearch(){
 </script>
 <style>
   .map-container {
-    width: 600px;
-    height: 300px;
     border:1px solid red;
+    width:100%;
   }
         #map {
         height: 100%;
@@ -433,5 +438,31 @@ clientSearch(){
         font-size: 25px;
         font-weight: 500;
         padding: 6px 12px;
+      }
+      .margin-left-sm{
+        margin-left:1em;
+      }
+      .justify-center{
+        justify-content: center;
+        align-items: center;
+      }
+      .height70{
+        height:70vh;
+      }
+      .height-3-em{
+        height:3em;
+      }
+      .list-container {
+          overflow-y:scroll;
+          overflow-x:none;
+          /*width:90%;*/
+          margin: auto;
+          /*height:75vh;*/
+          height:calc( 100% - 70px);
+          align-items: center;
+          padding-bottom: 2em;
+      }
+      .margin-bottom-sm{
+        margin-bottom: 1em;
       }
 </style>

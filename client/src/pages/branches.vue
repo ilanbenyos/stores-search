@@ -1,41 +1,28 @@
 <template>
   <section class= "section">
-    <div class = "container flex col center-hor">
         <div class= "main-header" >{{componentName}}</div>
-        <div  class= "list-item outline1" v-for="(item,idx) in list">
-            <div v-if="idx === 0" class= "header self-al-start outline1 field flex row field-line" >
-                <div class="field header name hide1">Name:</div>
-                <div class="field width10 hide1">שם</div>
-                <div class="field width5 hide1">short</div>
-                <div class="field width5 hide1">מקוצר</div>
-            </div>
-            <div class="field flex row col1 ">
-                <div class="field-line flex col1">
-                    <div class="field flex col width10">
-                            <div class="field header show1 ">Name:</div>
-                                <b-form-input size="lg" disabled class="input name" v-model="item.name"></b-form-input>
+    <div class = "container flex col center-hor">
+        <div class=" card " >
+            <div  class= "flex col1 list-item outline1" v-for="(item,idx) in list">
+                <div class=" width100-sm flex row col1 width-30-pr ">
+                    <div class="flex font-size-2em-sm row space-around ">
+                        <div class="item " > {{item.name}} </div>
                     </div>
-                    <div class="field flex col width10 ">
-                            <div class="field header show1">שם</div>
-                                <b-form-input size="lg" disabled class="input nameHeb" v-model="item.nameHeb"></b-form-input>
+                </div>
+                <div class="width100-sm   flex row1 " >
+                    <div class="item width10" >markers color: </div>
+                        <div class='color-box' :style="{ 'background-color':item.color}"> 
                     </div>
-                    <div class="field flex col width5">
-                            <div class="field header show1">short</div>
-                                <b-form-input size="lg" disabled class="input " v-model="item.nameShort"></b-form-input>
-                    </div>
-                    <div class="field flex col width5">
-                            <div class="field header show1">מקוצר</div>
-                                <b-form-input size="lg" disabled class="input " v-model="item.nameHebShort"></b-form-input>
-                    </div>
-                    <b-button variant='warning' class="margin-sides1" @click="editRecord(item)">
-                        <b-tooltip :delay="tooltipDelay" content="edit page">
-                                <i class="material-icons">mode_edit</i>
-                        </b-tooltip>
+                <!--</div>-->
+                    <b-button size="sm" variant='warning' class="margin-sides1 margin-left-sm " @click="editRecord(item)">
+                            <b-tooltip :delay="tooltipDelay" content="edit page">
+                                    <i class="material-icons">mode_edit</i>
+                            </b-tooltip>
                     </b-button>
-
                 </div>
             </div>
-            </div>
+        </div>
+    </div>
     </div>
     <div  class="buttons-pnl margin-top-1 flex row center-ver">
                 <b-button variant='primary' @click="addNewLocalRecord(listName)">
@@ -47,7 +34,7 @@
                 <b-button  size="lg" variant='primary' @click="saveAll(list,listName)">save all</b-button>
             </b-tooltip>
             
-            <b-button variant='primary' @click="getList(listName,{},$event)">
+            <b-button variant='primary'  @click="getList(listName,{},$event)">
                 <b-tooltip :delay="tooltipDelay" content="refresh list">
                         <i class="material-icons">refresh</i>
                 </b-tooltip>
@@ -66,16 +53,8 @@
                                 <b-form-input size="lg" @keydown.native="modalIsDirty" class="input" v-model="item.name"></b-form-input>
                         </div>
                         <div class="field  col ">
-                                <div class="field header ">שם:</div>
-                                <b-form-input size="lg"  @keydown.native="modalIsDirty" class="input" v-model="item.nameHeb"></b-form-input>
-                        </div>
-                        <div class="field  col ">
-                                <div class="field header ">nameShort:</div>
-                                <b-form-input size="lg" @keydown.native="modalIsDirty" class="input" v-model="item.nameShort"></b-form-input>
-                        </div>
-                        <div class="field  col ">
-                                <div class="field header ">מקוצר:</div>
-                                <b-form-input size="lg" @keydown.native="modalIsDirty" class="input" v-model="item.nameHebShort"></b-form-input>
+                                <div class="field header ">color:</div>
+                                <input type="color" @keydown.native="modalIsDirty" class="input" v-model="item.color"></input>
                         </div>
                     <!--===========BUTTONS PANNEL========-->
                     <div  class="buttons-pnl">
@@ -117,7 +96,7 @@
                     <!--===========BUTTONS PANNEL========-->
                     <div  class="buttons-pnl">
                         <b-button variant='danger'  
-                                    @click.stop="deleteFromList2(listName,item._id,$event)">
+                                    @click.stop="deleteFromList2(listName,item,$event)">
                                 <b-tooltip class="margin-sides1" :delay="tooltipDelay" content="delete">
                                     <i class="material-icons">delete_forever</i>
                                 </b-tooltip>
@@ -137,50 +116,60 @@
   </section>
 </template>
 <script>
-
-import { SENDMSG } from '../../store/store'
+import { SENDMSG } from '../store/store'
+import Helpers from '../services/helpers.service.js';
+import { sortlistBy2Keys, cloneDeep,getObjById} from '../helpers/functions'
 import moment from 'moment'
-
-
 export default {
-  name: 'Facilities',
+  name: 'Branches',
   data() {
     return {
-    //   mixins: [mixins],
-      componentName:'Facilities list',
+      Helpers:Helpers,
+      componentName:'Branches',
       state:this.$store.getters.fetchGetState,
-      ponds:this.$store.getters.fetchGetPonds,
       facilities:this.$store.getters.fetchGetFacilities,//
       pageMode:'readOnly',
       editMode:false,
       pageEdit:false,
       tooltipDelay:700,
-      fetchList:this.$store.getters.fetchGetFacilities,//need to be changed!!
+      fetchList:this.$store.getters.fetchGetBranches,//need to be changed!!
       list:[],
-      listName:'facilities',//need to be changed!!
+      listName:'branches',//need to be changed!!
       item: '',
-      itemName: 'facility',
+      itemName: 'branch',
       modalDirty:false,
       modal2:false
     }
   },
-  created () {
+  mounted () {
         this.getList(this.listName,{});
-        this.list = this.$store.getters.fetchGetFacilities;
-  },
+        var list = this.$store.getters.fetchGetBranches;
+            list = Helpers.sortlistBy2Keys(list,'fac','idx');
+            this.list = list  
+        },
     watch:{
       list1: function(newList){
-        this.list = this.$store.getters.fetchGetFacilities;
+            var list = this.$store.getters.fetchGetBranches;
+            list = Helpers.sortlistBy2Keys(list,'fac','idx');
+            this.list = list
       },
     },
     computed: {
-        list1() {return this.$store.getters.fetchGetFacilities},
+        list1() {
+            var list = this.$store.getters.fetchGetBranches;
+            list = Helpers.sortlistBy2Keys(list,'fac','idx');
+            return list;
+        },
     },
   methods: {//
-        cloneDeep(obj){
-            var myJSON = JSON.stringify(obj);
-            return JSON.parse(myJSON)
-        },
+      isDeletedItem(item){
+           if(item.mode=== 'deleted'){
+                return 'deleted-item'
+           }else{
+                return '';
+           }
+        //    return (item.mode=== 'deleted')? 'deleted-item': '';
+      },
     modalIsDirty(){
         this.modalDirty = true;
     },
@@ -190,7 +179,7 @@ export default {
   },
       editRecord(item){
             this.pageEdit =!this.pageEdit;
-            this.item = this.cloneDeep(item);
+            this.item = Helpers.cloneDeep(item);
       },
         toggleField(e,bul){
             var parent = e.path[5];
@@ -207,6 +196,7 @@ export default {
         }                   
       },
       saveRecord(list,newObj,e){
+          
             newObj.mode = 'saved';
             const acts =[]
             if(newObj._id){
@@ -216,7 +206,7 @@ export default {
             }
                 acts.push({ actType: 'getList', list, criteria:{},askFrom:'server' })
                 this.sendMsg( {acts});
-                this. closeModal()
+                this.closeModal()
       },
       addNewLocalRecord(arr){
         this.item = {mode :'edit'};
@@ -227,19 +217,13 @@ export default {
             const acts =[{ actType: 'getList', list:listName, criteria:{} }];
             this.sendMsg({acts});
       },
-    getObjById(objId,arr) {
-        var arr1 = this[arr];
-        var obj = arr.find(function (obj1) {
-            return (objId === obj1._id)
-        })
-        return obj
-    },
-      deleteFromList2(list,id,e){
+      deleteFromList2(list,obj,e){
             const acts =[
-                            { actType: 'deleteFromList', objId:id, list},
+                            { actType: 'deleteFromList', objId:obj._id, list},
                             { actType: 'getList', list:list, criteria:{} }
                         ]
             this.sendMsg({acts});
+            obj.mode = 'deleted'
             this.closeModal();
             this.modal2 =false;
       },
@@ -264,5 +248,51 @@ export default {
 }
 </script>
 <style scoped>
-
+.row{
+    margin-right:0;
+    margin-left:0;
+}
+width-lg{
+    width:15em;
+}
+.list-item{
+    padding:initial;
+    padding-left:1em;
+}
+select{
+    width:100%;
+}
+.color-box{
+    width:2em;
+    height:2em;
+}
+.deleted-item{
+    background-color: red;
+}
+*{
+    /*outline:1px solid black;*/
+}
+.margin-left-sm{
+    margin-left:2em;
+}
+.item{
+    font-size: 1.5em;
+}
+.width-30-pr{
+   width:30%; 
+}
+.width-50-pr{
+   width:50%; 
+}
+.card{
+    width:90%;
+}
+@media screen and (max-width: 700px) {
+    .width100-sm{
+         width:100%;
+     }
+     .font-size-2em-sm{
+         font-size:1.5em;
+     }
+}
 </style>

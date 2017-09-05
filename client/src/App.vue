@@ -127,6 +127,9 @@ body {
 .flex{
   display: flex;
 }
+.width90{
+    width:90%;
+}
 .row{
   flex-direction: row;
 }
@@ -256,7 +259,10 @@ select{
 .font-size-md{
     font-size:2em;
 }
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 700px) {
+    // .item{
+    //     background-color: red;
+    // }
     .container{
         // width:calc(100% + 17px);
         width:100%;
@@ -274,7 +280,7 @@ select{
     .input{
         width:98%;
     }
-    .width-100-1{
+    .width100-sm{
         width:100%;
     }
     .show1{

@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-# mingler
-
-> A Vue.js project
-live demo can be found here:
-https://minglers.herokuapp.com/
 
 ## Build Setup
 
@@ -29,7 +23,7 @@ npm test
 
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 "# protoProj" 
-=======
+
 # stores-serch
 a little system to create brancehs, stores for each, entering address via google maps api. the system will return the closest store and tell the user whice is the best branch by stores located with in 50 km.
 >>>>>>> af78f0b460edce8f90dd97f4114f62730dcb52b0

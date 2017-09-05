@@ -24,26 +24,9 @@ export default {
 
 
   mounted() {
-   // console.log('splash: waiting 3 seconds')
-    // this.$router.push('Browse');
   },
 
-//     watch:{
-// this.$store.getters.curUser: function(cur){
-//   if(!cur){
-//   console.log('SPLASH: user logged in - move to BROWSE');
-// this.$router.push('Browse');
-//   } 
-//   else{
-//    console.log('SPLASH: user logged in - move to BROWSE');
-//    this.$router.push('Login');
-//   } 
-// },
   computed: {
-    //  users() {
-    //       console.log('this.$store.usersMatched', this.$store.state.usersMatched);
-    //       return this.$store.usersMatched;
-    //     }
   },
 
 }
@@ -51,7 +34,6 @@ export default {
 
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
 .image-container{
